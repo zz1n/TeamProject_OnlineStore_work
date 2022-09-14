@@ -1,6 +1,3 @@
-# TeamProject_OnlineStore
-01. TeamProject_OnlineStore
-
 com.teampj.shop
 popol / 1234
 
@@ -99,4 +96,4 @@ https://1drv.ms/x/s!AoAFrj9GbibY93GHNb8wjXn2KXWx?e=Otku9q
 글번호자동생성시퀸스		seq
 부모번호	reproot	
 내려쓰기	repstep	
-들여쓰기	repindent
+들여쓰기	repindent	
