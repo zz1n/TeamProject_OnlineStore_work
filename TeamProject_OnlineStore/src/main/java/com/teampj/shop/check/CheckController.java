@@ -24,7 +24,6 @@ public class CheckController {
 	ModelAndView mav = new ModelAndView();
 	JSONParser jp = new JSONParser();
 	JSONObject jo;
-	CheckService ser = sqlSession.getMapper(CheckService.class);
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView home(Model model) {
