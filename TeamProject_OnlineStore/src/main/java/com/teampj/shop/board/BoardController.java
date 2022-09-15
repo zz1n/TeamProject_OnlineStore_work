@@ -24,7 +24,6 @@ public class BoardController {
 	ModelAndView mav = new ModelAndView();
 	JSONParser jp = new JSONParser();
 	JSONObject jo;
-	BoardService ser = sqlSession.getMapper(BoardService.class);
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView home(Model model) {
