@@ -24,7 +24,6 @@ public class ListController {
 	ModelAndView mav = new ModelAndView();
 	JSONParser jp = new JSONParser();
 	JSONObject jo;
-	ListService ser = sqlSession.getMapper(ListService.class);
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView home(Model model) {
