@@ -24,7 +24,6 @@ public class UserController {
 	ModelAndView mav = new ModelAndView();
 	JSONParser jp = new JSONParser();
 	JSONObject jo;
-	UserService ser = sqlSession.getMapper(UserService.class);
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView main(Model model) {
