@@ -24,6 +24,7 @@ public class SellerController {
 	ModelAndView mav = new ModelAndView();
 	JSONParser jp = new JSONParser();
 	JSONObject jo;
+	SellerService ser = sqlSession.getMapper(SellerService.class);
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView home(Model model) {
