@@ -32,27 +32,6 @@ public class SellerController {
 		mav.setViewName("sellermain");
 		return mav;
 	}
-
-	
-	//아이디 중복체크
-	   @RequestMapping(value = "/idCheck", method = RequestMethod.POST)
-	//   @ResponseBody
-	   public int idck(HttpServletRequest request) throws Throwable {
-
-	      SellerService ser = sqlSession.getMapper(SellerService.class);
-	      
-	   
-	         request.setCharacterEncoding("utf-8");
-	         String data = request.getParameter("sellerid");
-	         jo = (JSONObject) jp.parse(data);
-	         String sellerid= (String) jo.get("sellerid");
-	         int cnt = ser.idCheck(sellerid);
-	         
-	         System.out.println("카운트"+cnt+"아이디"+sellerid);
-	         return cnt;
-
-	   }
-
 	   
 	   
 }

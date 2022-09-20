@@ -18,4 +18,8 @@
 		<result property="repindent" column="repindent"/>
 	</resultMap>
 
+<select id="usereareview" resultMap="dto">
+select l.pname as pcode, b.bdate, b.bname, b.bcont from boarddb b left outer join listdb l on (b.pcode = l.pcode) where b.bnum = #{param1}
+</select>
+
 </mapper>

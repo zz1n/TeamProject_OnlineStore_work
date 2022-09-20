@@ -21,4 +21,18 @@
 	</resultMap>
 <!-- ocode insert 할 때, 칼럼값을 'O'||LPAD(SEQ_orderDB.NEXTVAL,5,0) -->
 
+<select id="orderlist" resultMap="dto">
+select o.ocode, o.ocount, 
+		decode (o.ostate,
+		        1, '배송전',
+		        2, '배송시작',
+		        3, '구매확정') as omethod
+		, o.odate, l.pname as oshipcode, o.ocharge, nvl(b.bnum, 0) as oaddress
+		from orderdb o join listdb l on (o.pcode = l.pcode)
+		    left outer join userdb u on (o.ucode = u.ucode)
+		    left outer join boarddb b on (u.ucode = b.bcode and o.pcode = b.pcode and b.btype=2)
+		where (odate between add_months(sysdate, -(#{param2}+3)) and add_months(sysdate, -(#{param2})))
+		    and u.userid = #{param1}
+</select>
+
 </mapper>

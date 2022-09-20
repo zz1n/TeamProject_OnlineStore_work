@@ -4,4 +4,6 @@ import java.util.ArrayList;
 
 public interface BoardService {
 
+	BoardDTO usereareview(int bnum);
+
 }

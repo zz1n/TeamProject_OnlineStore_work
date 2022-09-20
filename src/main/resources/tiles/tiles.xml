@@ -19,6 +19,9 @@
 	<definition name="boardmain" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/board/main.jsp" />
 	</definition>
+	<definition name="reviewboard" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/board/reviewboard.jsp" />
+	</definition>
 	
 <!-- CHECK -->
 	<definition name="checkmain" extends="baseLayout">
@@ -49,5 +52,14 @@
 	<definition name="usermain" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/main.jsp" />
 	</definition>
-
+	<definition name="userorderlist" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/userorderlist.jsp" />
+	</definition>
+	<definition name="usercart" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/usercart.jsp" />
+	</definition>
+	<definition name="userreviewout" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/reviewout.jsp" />
+	</definition>
+	
 </tiles-definitions>
