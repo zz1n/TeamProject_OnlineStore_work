@@ -30,5 +30,4 @@ public class BoardController {
 		mav.setViewName("boardmain");
 		return mav;
 	}
-
 }

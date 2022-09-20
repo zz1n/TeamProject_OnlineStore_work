@@ -35,8 +35,8 @@
           <li><a href="/shop/user/main">main</a></li>
           <li><a href="/shop/user/orderlist?stnrd=0">orderlist</a></li>
           <li><a href="/shop/user/orderlist?stnrd=3">bfrorderlist</a></li>
-          <li><a href="/shop/user/reviewlist">review</a></li>
           <li><hr></li>
+          <li><a href="/shop/user/reviewlist?btype=2">review</a></li>
           <li><a href="/shop/user/cart">cart</a></li>
         </ul>
       </li>

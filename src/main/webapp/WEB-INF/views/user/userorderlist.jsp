@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문내역</title>
+<title>주문 내역</title>
 <!-- ocode 주문코드
 ocount 구매수량
 omethod 배송상태
@@ -40,10 +40,10 @@ oaddress 후기넘버
 				<td>${list[i].ocount}개</td>
 				<td><c:choose>
 						<c:when test="${list[i].oaddress==0}">
-							<a href="#">리뷰 쓰러 가기</a>
+							<a href="shop/user/userreviewwrite?ocode=${list[i].ocode }">리뷰 쓰러 가기</a>
 						</c:when>
 						<c:otherwise>
-							<a href="shop/board/reviewout?bnum=${list[i].oaddress}">내가 쓴 리뷰 보기</a>
+							<a href="shop/user/reviewout?bnum=${list[i].oaddress}">내가 쓴 리뷰 보기</a>
 						</c:otherwise>
 					</c:choose></td>
 			</tr>

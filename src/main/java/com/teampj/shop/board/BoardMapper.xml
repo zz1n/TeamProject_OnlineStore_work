@@ -22,4 +22,12 @@
 select l.pname as pcode, b.bdate, b.bname, b.bcont from boarddb b left outer join listdb l on (b.pcode = l.pcode) where b.bnum = #{param1}
 </select>
 
+<insert id="userreviewsave">
+insert into boarddb select SEQ_boardDB.NEXTVAL, ucode, #{param2}, #{param3}, pcode, sysdate, 2, 2, 0, 0 from orderdb where ocode = #{param1}
+</insert>
+
+<select id="userreviewlist" resultMap="dto">
+select b.bname, l.pname as pcode, b.bdate from boarddb b left outer join listdb l on (b.pcode = l.pcode) where  b.bcode = (select ucode from userdb where userid = #{param1}) and b.btype = #{param2}
+</select>
+
 </mapper>
