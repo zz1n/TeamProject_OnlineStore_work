@@ -37,7 +37,8 @@
           <li><a href="/shop/user/orderlist?stnrd=3">bfrorderlist</a></li>
           <li><hr></li>
           <li><a href="/shop/user/reviewlist?btype=2">review</a></li>
-          <li><a href="/shop/user/cart">cart</a></li>
+          <li><a href="/shop/check/usercheck?bcode=1">cart</a></li>
+          <li><a href="/shop/check/usercheck?bcode=2">like</a></li>
         </ul>
       </li>
     </ul>

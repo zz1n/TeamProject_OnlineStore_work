@@ -25,4 +25,8 @@
 	</resultMap>
 <!-- pcode insert 할 때, 칼럼값을 'P'||LPAD(SEQ_productDB.NEXTVAL,5,0) -->
 
+<select id="usercheck" resultMap="dto">
+	select l.pcode, l.pthumbnail, l.pname, l.price, c.bcount as cost from listdb l left outer join checkdb c on (l.pcode = c.pcode) where ucode = (select ucode from userdb where userid = #{param1}) and bcode = #{param2}
+</select>
+
 </mapper>

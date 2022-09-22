@@ -22,10 +22,19 @@
 	<definition name="userreviewwrite" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/board/userreviewwrite.jsp" />
 	</definition>
+	<definition name="userreviewupdate" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/board/reviewupdate.jsp" />
+	</definition>
 	
 <!-- CHECK -->
 	<definition name="checkmain" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/check/main.jsp" />
+	</definition>
+	<definition name="usercart" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/check/usercart.jsp" />
+	</definition>
+	<definition name="userlike" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/check/userlike.jsp" />
 	</definition>
 	
 <!-- LIST -->
@@ -54,9 +63,6 @@
 	</definition>
 	<definition name="userorderlist" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/userorderlist.jsp" />
-	</definition>
-	<definition name="usercart" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/views/user/usercart.jsp" />
 	</definition>
 	<definition name="userreviewout" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/reviewout.jsp" />

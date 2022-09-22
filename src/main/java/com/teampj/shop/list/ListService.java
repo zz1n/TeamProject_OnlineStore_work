@@ -4,4 +4,6 @@ import java.util.ArrayList;
 
 public interface ListService {
 
+	ArrayList<ListDTO> usercheck(String string, int bcode);
+
 }

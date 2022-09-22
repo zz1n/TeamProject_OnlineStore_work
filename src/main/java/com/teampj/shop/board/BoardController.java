@@ -1,5 +1,9 @@
 package com.teampj.shop.board;
 
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -28,6 +32,22 @@ public class BoardController {
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView home(Model model) {
 		mav.setViewName("boardmain");
+		return mav;
+	}
+	
+	// 내가 작성한 리뷰 삭제하기
+	@RequestMapping(value = "/userreviewdel", method = RequestMethod.GET) // 세션작업 필요
+	public ModelAndView userreviewdel(Model model, HttpServletRequest request) {
+		// 세션에서 아이디 가져오는걸로 수정하기
+		
+		BoardService ser = sqlSession.getMapper(BoardService.class);
+		int bnum = Integer.parseInt(request.getParameter("bnum"));
+		
+		int k = ser.userreviewdel("user001", bnum);
+		System.out.println("리뷰삭제됐니? " + k);
+		
+		mav.setViewName("userreviewlist");
+		
 		return mav;
 	}
 }

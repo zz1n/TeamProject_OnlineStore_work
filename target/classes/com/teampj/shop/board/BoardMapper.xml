@@ -19,7 +19,7 @@
 	</resultMap>
 
 <select id="usereareview" resultMap="dto">
-select l.pname as pcode, b.bdate, b.bname, b.bcont from boarddb b left outer join listdb l on (b.pcode = l.pcode) where b.bnum = #{param1}
+select b.bnum, l.pname as pcode, b.bdate, b.bname, b.bcont from boarddb b left outer join listdb l on (b.pcode = l.pcode) where b.bnum = #{param2} and b.bcode = (select ucode from userdb where userid = #{param1})
 </select>
 
 <insert id="userreviewsave">
@@ -27,7 +27,21 @@ insert into boarddb select SEQ_boardDB.NEXTVAL, ucode, #{param2}, #{param3}, pco
 </insert>
 
 <select id="userreviewlist" resultMap="dto">
-select b.bname, l.pname as pcode, b.bdate from boarddb b left outer join listdb l on (b.pcode = l.pcode) where  b.bcode = (select ucode from userdb where userid = #{param1}) and b.btype = #{param2}
+select b.bnum, b.bname, l.pname as pcode, b.bdate from boarddb b left outer join listdb l on (b.pcode = l.pcode) where  b.bcode = (select ucode from userdb where userid = #{param1}) and b.btype = #{param2}
 </select>
+
+<delete id="userreviewdel">
+delete from boarddb where bnum = #{param2} and bcode = (select ucode from userdb where userid=#{param1})
+</delete>
+
+<select id="userreviewupdateget" resultMap="dto">
+select b.bnum, l.pname as pcode, b.bdate, b.bname, b.bcont from boarddb b left outer join listdb l on (b.pcode = l.pcode) where b.bnum = #{param2} and b.bcode = (select ucode from userdb where userid = #{param1})
+</select>
+
+<update id="userreviewupdateset">
+update boarddb set bname = #{param3}, bcont = #{param4} where bnum = #{param2} and bcode = (select ucode from userdb where userid = #{param1})
+</update>
+
+
 
 </mapper>
