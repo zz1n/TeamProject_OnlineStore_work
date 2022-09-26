@@ -30,7 +30,7 @@ insert into boarddb select SEQ_boardDB.NEXTVAL, ucode, #{param2}, #{param3}, pco
 select b.bnum, b.bname, l.pname as pcode, b.bdate from boarddb b left outer join listdb l on (b.pcode = l.pcode) where  b.bcode = (select ucode from userdb where userid = #{param1}) and b.btype = #{param2}
 </select>
 
-<delete id="userreviewdel">
+<delete id="userboarddel">
 delete from boarddb where bnum = #{param2} and bcode = (select ucode from userdb where userid=#{param1})
 </delete>
 
@@ -42,6 +42,20 @@ select b.bnum, l.pname as pcode, b.bdate, b.bname, b.bcont from boarddb b left o
 update boarddb set bname = #{param3}, bcont = #{param4} where bnum = #{param2} and bcode = (select ucode from userdb where userid = #{param1})
 </update>
 
+<insert id="usertosellersave">
+insert into boarddb values (SEQ_boardDB.NEXTVAL, (select ucode from userdb where userid = #{param1}), #{param2}, #{param3}, #{param4}, sysdate, 1, SEQ_boardDB.CURRVAL, 0, 0)
+</insert>
 
+<select id="usertolist" resultMap="dto">
+select b.bnum, b.bname, b.bdate, p.pname as pcode from boarddb b, listdb p where b.pcode = p.pcode(+) and b.btype = #{param2} and b.bcode = (select ucode from userdb where userid = #{param1})
+</select>
+
+<select id="usertosellerout" resultMap="dto">
+select b.bnum, b.bname, b.bcont, p.pname as pcode, b.bdate from boarddb b, listdb p where b.pcode = p.pcode(+) and reproot = #{param1} order by bnum
+</select>
+
+<insert id="usertositesave">
+insert into boarddb values (SEQ_boardDB.NEXTVAL, (select ucode from userdb where userid = #{param1}), #{param2}, #{param3}, '-', sysdate, 3, SEQ_boardDB.CURRVAL, 0, 0)
+</insert>
 
 </mapper>

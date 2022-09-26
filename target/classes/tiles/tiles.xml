@@ -25,6 +25,21 @@
 	<definition name="userreviewupdate" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/board/reviewupdate.jsp" />
 	</definition>
+	<definition name="usertoseller" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/board/usertoseller.jsp" />
+	</definition>
+	<definition name="usertosellerlist" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/board/usertosellerlist.jsp" />
+	</definition>
+	<definition name="usertosellerout" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/board/usertosellerout.jsp" />
+	</definition>
+	<definition name="usertosite" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/board/usertosite.jsp" />
+	</definition>
+	<definition name="usertositelist" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/board/usertositelist.jsp" />
+	</definition>
 	
 <!-- CHECK -->
 	<definition name="checkmain" extends="baseLayout">

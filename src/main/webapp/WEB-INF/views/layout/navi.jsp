@@ -39,6 +39,10 @@
           <li><a href="/shop/user/reviewlist?btype=2">review</a></li>
           <li><a href="/shop/check/usercheck?bcode=1">cart</a></li>
           <li><a href="/shop/check/usercheck?bcode=2">like</a></li>
+          <li><hr></li>
+          <li><a href="/shop/user/usertosellerlist?btype=1">ask to seller list</a></li>
+          <li><a href="/shop/board/usertosite">ask to site</a></li>
+          <li><a href="/shop/board/usertositelist?btype=3">ask to site list</a></li>
         </ul>
       </li>
     </ul>

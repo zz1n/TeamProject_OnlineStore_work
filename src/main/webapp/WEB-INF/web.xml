@@ -51,7 +51,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CheckController</servlet-name>
-    <url-pattern>/CheckController</url-pattern>
+    <url-pattern>/check</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -61,7 +61,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ListController</servlet-name>
-    <url-pattern>/ListController</url-pattern>
+    <url-pattern>/list</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -71,7 +71,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>OrderController</servlet-name>
-    <url-pattern>/OrderController</url-pattern>
+    <url-pattern>/order</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -81,7 +81,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ProfitController</servlet-name>
-    <url-pattern>/ProfitController</url-pattern>
+    <url-pattern>/profit</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -91,7 +91,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>SellerController</servlet-name>
-    <url-pattern>/SellerController</url-pattern>
+    <url-pattern>/seller</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -101,6 +101,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>UserController</servlet-name>
-    <url-pattern>/UserController</url-pattern>
+    <url-pattern>/user</url-pattern>
   </servlet-mapping>
 </web-app>

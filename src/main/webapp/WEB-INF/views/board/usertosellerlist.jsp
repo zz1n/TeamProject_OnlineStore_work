@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품 문의 내역</title>
+</head>
+<body>
+<h3 style="text-align: center;">상품 문의 내역</h3>
+
+	<table width="700px" align="center">
+		<tr bgcolor="grey">
+			<th>글번호</th>
+			<th>작성날짜</th>
+			<th>상품이름</th>
+			<th>문의글</th>
+		</tr>
+		<c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
+			<tr>
+				<td>${list[i].bnum }</td>
+				<td>${list[i].bdate }</td>
+				<td>${list[i].pcode }</td>
+				<td><a href="shop/user/usertosellerout?bnum=${list[i].bnum }">${list[i].bname }</a></td>	<!-- 문의글 상세로 이어지는 링크 걸어야 -->
+
+			</tr>
+		</c:forEach>
+	</table>
+</body>
+</html>

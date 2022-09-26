@@ -10,11 +10,17 @@ public interface BoardService {
 
 	ArrayList<BoardDTO> userreviewlist(String string, int btype);
 
-	int userreviewdel(String string, int bnum);
+	int userboarddel(String string, int bnum);
 
 	BoardDTO userreviewupdateget(String string, int bnum);
 
 	int userreviewupdateset(String string, String bnum, String bname, String bcont);
 
+	int usertosellersave(String string, String bname, String bcont, String pcode);
 
+	ArrayList<BoardDTO> usertolist(String string, int btype);
+
+	ArrayList<BoardDTO> usertosellerout(int bnum);
+
+	int usertositesave(String string, String bname, String bcont);
 }

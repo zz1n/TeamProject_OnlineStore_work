@@ -14,7 +14,8 @@ omethod 배송상태
 odate 주문일자
 oshipcode 구매상품
 ocharge 주문금액
-oaddress 후기넘버
+oaddress 후기 글넘버
+omemo 문의 글넘버
 *나중에 수정볼때 해결볼것* -->
 </head>
 <body>
@@ -29,6 +30,7 @@ oaddress 후기넘버
 			<th>구매상품</th>
 			<th>구매수량</th>
 			<th>후기</th>
+			<th>문의</th>		<!-- 값 가져오기 안 했음 -->
 		</tr>
 		<c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
 			<tr>
@@ -44,6 +46,14 @@ oaddress 후기넘버
 						</c:when>
 						<c:otherwise>
 							<a href="shop/user/reviewout?bnum=${list[i].oaddress}">내가 쓴 리뷰 보기</a>
+						</c:otherwise>
+					</c:choose></td>
+				<td><c:choose>
+						<c:when test="${list[i].omemo==0}">	<!-- 문의 유무 값 가져와야 -->
+							<a href="shop/user/usertoseller?ocode=${list[i].ocode }">문의 하러 가기</a>
+						</c:when>
+						<c:otherwise>
+							<a href="shop/user/usertosellerout?bnum=${list[i].omemo }">내가 쓴 문의 보기</a>
 						</c:otherwise>
 					</c:choose></td>
 			</tr>

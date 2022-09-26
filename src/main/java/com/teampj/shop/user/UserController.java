@@ -1,13 +1,10 @@
 package com.teampj.shop.user;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
@@ -17,11 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teampj.shop.board.BoardDTO;
 import com.teampj.shop.board.BoardService;
+import com.teampj.shop.list.ListDTO;
+import com.teampj.shop.list.ListService;
 import com.teampj.shop.order.OrderDTO;
 import com.teampj.shop.order.OrderService;
 
@@ -66,7 +64,7 @@ public class UserController {
 		int bnum = Integer.parseInt(request.getParameter("bnum"));
 		System.out.println("몇번리뷰?" + bnum);
 		BoardDTO dto = ser.usereareview("user001", bnum);
-		
+
 		mav.addObject("dto", dto);
 		mav.setViewName("userreviewout");
 		return mav;
@@ -105,7 +103,7 @@ public class UserController {
 	public ModelAndView reviewlist(Model model, HttpServletRequest request) {
 		// 세션에서 아이디 가져오는걸로 수정하기
 		BoardService ser = sqlSession.getMapper(BoardService.class);
-		
+
 		int btype = Integer.parseInt(request.getParameter("btype"));
 		ArrayList<BoardDTO> list = ser.userreviewlist("user001", btype);
 
@@ -113,22 +111,23 @@ public class UserController {
 		mav.setViewName("userreviewlist");
 		return mav;
 	}
-	
+
 	// 내가 작성한 리뷰 삭제하기
 	@RequestMapping(value = "/userreviewdel", method = RequestMethod.GET) // 세션작업 필요
 	public ModelAndView userreviewdel(Model model, HttpServletRequest request) {
 		// 세션에서 아이디 가져오는걸로 수정하기
-			
+
 		BoardService ser = sqlSession.getMapper(BoardService.class);
 		int bnum = Integer.parseInt(request.getParameter("bnum"));
-			
-		int k = ser.userreviewdel("user001", bnum);
+
+		int k = ser.userboarddel("user001", bnum);
 		System.out.println("리뷰삭제됐니? " + k);
 
 		mav.setViewName("redirect:main");
-			
+
 		return mav;
 	}
+
 	// 리뷰 수정 출력
 	@RequestMapping(value = "/reviewupdate", method = RequestMethod.GET) // 세션작업 필요
 	public ModelAndView reviewupdate(Model model, HttpServletRequest request) {
@@ -142,7 +141,7 @@ public class UserController {
 		mav.setViewName("userreviewupdate");
 		return mav;
 	}
-	
+
 	// 수정한 리뷰 저장
 	@RequestMapping(value = "/reviewupdateset", method = RequestMethod.POST) // 세션작업 필요
 	public ModelAndView reviewupdateset(Model model, HttpServletRequest request) {
@@ -159,5 +158,89 @@ public class UserController {
 		mav.setViewName("redirect:main");
 		return mav;
 	}
+
+	// 문의하러가기
+	@RequestMapping(value = "/usertoseller", method = RequestMethod.GET) // 세션작업 필요
+	public ModelAndView usertoseller(Model model, HttpServletRequest request) {
+		// 세션에서 아이디 가져오는걸로 수정하기
+
+		ListService ser = sqlSession.getMapper(ListService.class);
+		String ocode = request.getParameter("ocode");
+		System.out.println("usertoseller ocode 잘 도착했니? " + ocode);
+		ListDTO dto = ser.usertoseller(ocode);
+
+		mav.addObject("dto", dto);
+		mav.setViewName("usertoseller");
+
+		return mav;
+	}
 	
+	// 문의 저장하기
+	@RequestMapping(value = "/usertosellersave", method = RequestMethod.POST) // 세션작업 필요
+	public ModelAndView usertosellersave(Model model, HttpServletRequest request) {
+		// 세션에서 아이디 가져오는걸로 수정하기
+		
+		BoardService ser = sqlSession.getMapper(BoardService.class);
+		
+		String bname = request.getParameter("bname");
+		String bcont = request.getParameter("bcont");
+		String pcode = request.getParameter("pcode");
+		System.out.println("문의 등록 중! "+bname+pcode);
+		
+		int k = ser.usertosellersave("user001", bname, bcont, pcode);
+		System.out.println("문의 등록 됐니? "+k);
+		
+		mav.setViewName("redirect:main");
+		
+		return mav;
+	}
+
+	// 내가 쓴 문의 목록 확인
+	@RequestMapping(value = "/usertosellerlist", method = RequestMethod.GET) // 세션작업 필요
+	public ModelAndView usertosellerlist(Model model, HttpServletRequest request) {
+		// 세션에서 아이디 가져오는걸로 수정하기
+		
+		int btype = Integer.parseInt(request.getParameter("btype"));
+		BoardService ser = sqlSession.getMapper(BoardService.class);
+		ArrayList<BoardDTO> list = ser.usertolist("user001", btype);
+
+		mav.addObject("list", list);
+		mav.setViewName("usertosellerlist");
+
+		return mav;
+	}
+
+	// 내가 쓴 문의 내용
+	@RequestMapping(value = "/usertosellerout", method = RequestMethod.GET) // 세션작업 필요
+	public ModelAndView usertosellerout(Model model, HttpServletRequest request) {
+		// 세션에서 아이디 가져오는걸로 수정하기
+		BoardService ser = sqlSession.getMapper(BoardService.class);
+		
+		int bnum = Integer.parseInt(request.getParameter("bnum"));
+		System.out.println("문의 내용 읽으러 왔는데, "+bnum);
+		
+		ArrayList<BoardDTO> list = ser.usertosellerout(bnum);
+
+		mav.addObject("list", list);
+		mav.setViewName("usertosellerout");
+
+		return mav;
+	}
+
+	// 내가 쓴 문의 삭제
+	@RequestMapping(value = "/usertosellerdel", method = RequestMethod.GET) // 세션작업 필요
+	public ModelAndView usertosellerdel(Model model, HttpServletRequest request) {
+		// 세션에서 아이디 가져오는걸로 수정하기
+		BoardService ser = sqlSession.getMapper(BoardService.class);
+		
+		int bnum = Integer.parseInt(request.getParameter("bnum"));
+		System.out.println("문의 내용 삭제하러, "+bnum);
+		
+		int k = ser.userboarddel("user001", bnum);
+		System.out.println("문의 삭제 됐니? "+k);
+
+		mav.setViewName("redirect:main");
+
+		return mav;
+	}
 }
