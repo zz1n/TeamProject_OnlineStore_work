@@ -28,8 +28,8 @@
 				<td>${dto.bcont }</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><a href="shop/user/reviewupdate?bnum=${dto.bnum}">수정</a> &emsp;
-				<a href="shop/user/userreviewdel?bnum=${dto.bnum}" onclick="javascript:alert('정말 삭제하시겠습니까?');">삭제</a></td>
+				<td colspan="2" align="center"><a href="reviewupdate?bnum=${dto.bnum}">수정</a> &emsp;
+				<a href="userreviewdel?bnum=${dto.bnum}" onclick="javascript:alert('정말 삭제하시겠습니까?');">삭제</a></td>
 			</tr>
 		</table>
 	</form>

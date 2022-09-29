@@ -19,7 +19,7 @@
 		<c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
 			<tr>
 				<td>${list[i].pcode } + ${list[i].bnum}</td>
-				<td><a href="shop/user/reviewout?bnum=${list[i].bnum}">${list[i].bname }</a></td>
+				<td><a href="reviewout?bnum=${list[i].bnum}">${list[i].bname }</a></td>
 				<td>${list[i].bdate }</td>
 			</tr>
 		</c:forEach>

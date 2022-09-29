@@ -79,6 +79,9 @@
 	<definition name="userorderlist" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/userorderlist.jsp" />
 	</definition>
+	<definition name="userorderdetail" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/userorderdetail.jsp" />
+	</definition>
 	<definition name="userreviewout" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/reviewout.jsp" />
 	</definition>

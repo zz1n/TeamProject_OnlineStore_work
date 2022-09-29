@@ -7,7 +7,7 @@
 <title>리뷰 작성</title>
 </head>
 <body>
-	<form action="shop/user/reviewupdateset" method="post">
+	<form action="reviewupdateset" method="post">
 		<table style="width: 500px">
 			<tr>
 				<td>상품</td>

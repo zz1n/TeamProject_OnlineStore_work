@@ -42,8 +42,8 @@ public class UserController {
 		return mav;
 	}
 
-	// 구매목록 3개월이내, 3개월이전
-	@RequestMapping(value = "/orderlist", method = RequestMethod.GET) // 세션작업 필요
+	// 援щℓ紐⑸줉 3媛쒖썡�씠�궡, 3媛쒖썡�씠�쟾
+	@RequestMapping(value = "/orderlist", method = RequestMethod.GET) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView orderlist(Model model, HttpServletRequest request) {
 		OrderService ser = sqlSession.getMapper(OrderService.class);
 
@@ -54,15 +54,28 @@ public class UserController {
 		mav.setViewName("userorderlist");
 		return mav;
 	}
+	
+	// 주문내역 > 주문상세정보
+	@RequestMapping(value = "/orderdetail", method = RequestMethod.GET) // 세션작업필요
+	public ModelAndView orderdetail(Model model, HttpServletRequest request) {
+		OrderService ser = sqlSession.getMapper(OrderService.class);
 
-	// 작성한 리뷰 보기
-	@RequestMapping(value = "/reviewout", method = RequestMethod.GET) // 세션작업 필요
+		String ocode = request.getParameter("ocode");
+		ArrayList<OrderDTO> list = ser.orderdetail("user001", ocode);
+
+		mav.addObject("list", list);
+		mav.setViewName("userorderdetail");
+		return mav;
+	}
+
+	// �옉�꽦�븳 由щ럭 蹂닿린
+	@RequestMapping(value = "/reviewout", method = RequestMethod.GET) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView reviewout(Model model, HttpServletRequest request) {
-		// 세션에서 아이디 가져오는걸로 수정하기
+		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 		BoardService ser = sqlSession.getMapper(BoardService.class);
 
 		int bnum = Integer.parseInt(request.getParameter("bnum"));
-		System.out.println("몇번리뷰?" + bnum);
+		System.out.println("紐뉖쾲由щ럭?" + bnum);
 		BoardDTO dto = ser.usereareview("user001", bnum);
 
 		mav.addObject("dto", dto);
@@ -70,8 +83,8 @@ public class UserController {
 		return mav;
 	}
 
-	// 구매목록에서 리뷰 작성하러가기
-	@RequestMapping(value = "/userreviewwrite", method = RequestMethod.GET) // 세션작업 필요
+	// 援щℓ紐⑸줉�뿉�꽌 由щ럭 �옉�꽦�븯�윭媛�湲�
+	@RequestMapping(value = "/userreviewwrite", method = RequestMethod.GET) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView userreviewwrite(Model model, HttpServletRequest request) {
 
 		String ocode = request.getParameter("ocode");
@@ -81,10 +94,10 @@ public class UserController {
 		return mav;
 	}
 
-	// 작성한 리뷰 저장
-	@RequestMapping(value = "/userreviewsave", method = RequestMethod.POST) // 세션작업 필요
+	// �옉�꽦�븳 由щ럭 ���옣
+	@RequestMapping(value = "/userreviewsave", method = RequestMethod.POST) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView userreviewsave(Model model, HttpServletRequest request) {
-		// 세션에서 아이디 가져오는걸로 수정하기
+		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 		BoardService ser = sqlSession.getMapper(BoardService.class);
 
 		String ocode = request.getParameter("ocode");
@@ -92,16 +105,16 @@ public class UserController {
 		String bcont = request.getParameter("bcont");
 
 		int k = ser.userreviewsave(ocode, bname, bcont);
-		System.out.println(k + "리뷰저장됐니?");
+		System.out.println(k + "由щ럭���옣�릱�땲?");
 
 		mav.setViewName("redirect:main");
 		return mav;
 	}
 
-	// 내가 작성한 리뷰 목록 보기
-	@RequestMapping(value = "/reviewlist", method = RequestMethod.GET) // 세션작업 필요
+	// �궡媛� �옉�꽦�븳 由щ럭 紐⑸줉 蹂닿린
+	@RequestMapping(value = "/reviewlist", method = RequestMethod.GET) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView reviewlist(Model model, HttpServletRequest request) {
-		// 세션에서 아이디 가져오는걸로 수정하기
+		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 		BoardService ser = sqlSession.getMapper(BoardService.class);
 
 		int btype = Integer.parseInt(request.getParameter("btype"));
@@ -112,26 +125,26 @@ public class UserController {
 		return mav;
 	}
 
-	// 내가 작성한 리뷰 삭제하기
-	@RequestMapping(value = "/userreviewdel", method = RequestMethod.GET) // 세션작업 필요
+	// �궡媛� �옉�꽦�븳 由щ럭 �궘�젣�븯湲�
+	@RequestMapping(value = "/userreviewdel", method = RequestMethod.GET) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView userreviewdel(Model model, HttpServletRequest request) {
-		// 세션에서 아이디 가져오는걸로 수정하기
+		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 
 		BoardService ser = sqlSession.getMapper(BoardService.class);
 		int bnum = Integer.parseInt(request.getParameter("bnum"));
 
 		int k = ser.userboarddel("user001", bnum);
-		System.out.println("리뷰삭제됐니? " + k);
+		System.out.println("由щ럭�궘�젣�릱�땲? " + k);
 
 		mav.setViewName("redirect:main");
 
 		return mav;
 	}
 
-	// 리뷰 수정 출력
-	@RequestMapping(value = "/reviewupdate", method = RequestMethod.GET) // 세션작업 필요
+	// 由щ럭 �닔�젙 異쒕젰
+	@RequestMapping(value = "/reviewupdate", method = RequestMethod.GET) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView reviewupdate(Model model, HttpServletRequest request) {
-		// 세션에서 아이디 가져오는걸로 수정하기
+		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 		BoardService ser = sqlSession.getMapper(BoardService.class);
 
 		int bnum = Integer.parseInt(request.getParameter("bnum"));
@@ -142,10 +155,10 @@ public class UserController {
 		return mav;
 	}
 
-	// 수정한 리뷰 저장
-	@RequestMapping(value = "/reviewupdateset", method = RequestMethod.POST) // 세션작업 필요
+	// �닔�젙�븳 由щ럭 ���옣
+	@RequestMapping(value = "/reviewupdateset", method = RequestMethod.POST) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView reviewupdateset(Model model, HttpServletRequest request) {
-		// 세션에서 아이디 가져오는걸로 수정하기
+		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 		BoardService ser = sqlSession.getMapper(BoardService.class);
 
 		String bnum = request.getParameter("bnum");
@@ -153,20 +166,20 @@ public class UserController {
 		String bcont = request.getParameter("bcont");
 
 		int k = ser.userreviewupdateset("user001", bnum, bname, bcont);
-		System.out.println(k + "리뷰수정됐니?");
+		System.out.println(k + "由щ럭�닔�젙�릱�땲?");
 
 		mav.setViewName("redirect:main");
 		return mav;
 	}
 
-	// 문의하러가기
-	@RequestMapping(value = "/usertoseller", method = RequestMethod.GET) // 세션작업 필요
+	// 臾몄쓽�븯�윭媛�湲�
+	@RequestMapping(value = "/usertoseller", method = RequestMethod.GET) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView usertoseller(Model model, HttpServletRequest request) {
-		// 세션에서 아이디 가져오는걸로 수정하기
+		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 
 		ListService ser = sqlSession.getMapper(ListService.class);
 		String ocode = request.getParameter("ocode");
-		System.out.println("usertoseller ocode 잘 도착했니? " + ocode);
+		System.out.println("usertoseller ocode �옒 �룄李⑺뻽�땲? " + ocode);
 		ListDTO dto = ser.usertoseller(ocode);
 
 		mav.addObject("dto", dto);
@@ -175,30 +188,30 @@ public class UserController {
 		return mav;
 	}
 	
-	// 문의 저장하기
-	@RequestMapping(value = "/usertosellersave", method = RequestMethod.POST) // 세션작업 필요
+	// 臾몄쓽 ���옣�븯湲�
+	@RequestMapping(value = "/usertosellersave", method = RequestMethod.POST) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView usertosellersave(Model model, HttpServletRequest request) {
-		// 세션에서 아이디 가져오는걸로 수정하기
+		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 		
 		BoardService ser = sqlSession.getMapper(BoardService.class);
 		
 		String bname = request.getParameter("bname");
 		String bcont = request.getParameter("bcont");
 		String pcode = request.getParameter("pcode");
-		System.out.println("문의 등록 중! "+bname+pcode);
+		System.out.println("臾몄쓽 �벑濡� 以�! "+bname+pcode);
 		
 		int k = ser.usertosellersave("user001", bname, bcont, pcode);
-		System.out.println("문의 등록 됐니? "+k);
+		System.out.println("臾몄쓽 �벑濡� �릱�땲? "+k);
 		
 		mav.setViewName("redirect:main");
 		
 		return mav;
 	}
 
-	// 내가 쓴 문의 목록 확인
-	@RequestMapping(value = "/usertosellerlist", method = RequestMethod.GET) // 세션작업 필요
+	// �궡媛� �벖 臾몄쓽 紐⑸줉 �솗�씤
+	@RequestMapping(value = "/usertosellerlist", method = RequestMethod.GET) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView usertosellerlist(Model model, HttpServletRequest request) {
-		// 세션에서 아이디 가져오는걸로 수정하기
+		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 		
 		int btype = Integer.parseInt(request.getParameter("btype"));
 		BoardService ser = sqlSession.getMapper(BoardService.class);
@@ -210,14 +223,14 @@ public class UserController {
 		return mav;
 	}
 
-	// 내가 쓴 문의 내용
-	@RequestMapping(value = "/usertosellerout", method = RequestMethod.GET) // 세션작업 필요
+	// �궡媛� �벖 臾몄쓽 �궡�슜
+	@RequestMapping(value = "/usertosellerout", method = RequestMethod.GET) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView usertosellerout(Model model, HttpServletRequest request) {
-		// 세션에서 아이디 가져오는걸로 수정하기
+		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 		BoardService ser = sqlSession.getMapper(BoardService.class);
 		
 		int bnum = Integer.parseInt(request.getParameter("bnum"));
-		System.out.println("문의 내용 읽으러 왔는데, "+bnum);
+		System.out.println("臾몄쓽 �궡�슜 �씫�쑝�윭 �솕�뒗�뜲, "+bnum);
 		
 		ArrayList<BoardDTO> list = ser.usertosellerout(bnum);
 
@@ -227,17 +240,17 @@ public class UserController {
 		return mav;
 	}
 
-	// 내가 쓴 문의 삭제
-	@RequestMapping(value = "/usertosellerdel", method = RequestMethod.GET) // 세션작업 필요
+	// �궡媛� �벖 臾몄쓽 �궘�젣
+	@RequestMapping(value = "/usertosellerdel", method = RequestMethod.GET) // �꽭�뀡�옉�뾽 �븘�슂
 	public ModelAndView usertosellerdel(Model model, HttpServletRequest request) {
-		// 세션에서 아이디 가져오는걸로 수정하기
+		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 		BoardService ser = sqlSession.getMapper(BoardService.class);
 		
 		int bnum = Integer.parseInt(request.getParameter("bnum"));
-		System.out.println("문의 내용 삭제하러, "+bnum);
+		System.out.println("臾몄쓽 �궡�슜 �궘�젣�븯�윭, "+bnum);
 		
 		int k = ser.userboarddel("user001", bnum);
-		System.out.println("문의 삭제 됐니? "+k);
+		System.out.println("臾몄쓽 �궘�젣 �릱�땲? "+k);
 
 		mav.setViewName("redirect:main");
 
