@@ -13,5 +13,9 @@
 		<result property="bcount" column="bcount"/>
 		<result property="bcode" column="bcode"/>
 	</resultMap>
+	
+<delete id="checkdel">
+	delete from checkdb where pcode = #{param1} and ucode = (select ucode from userdb where userid = #{param2})
+</delete>
 
 </mapper>

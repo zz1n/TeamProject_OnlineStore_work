@@ -6,6 +6,8 @@
 	<definition name="baseLayout" template="/WEB-INF/views/layout/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
 		<put-attribute name="body" value="" />
+		<put-attribute name="leftside" value="/WEB-INF/views/layout/leftside.jsp" />
+		<put-attribute name="rightside" value="/WEB-INF/views/layout/rightside.jsp" />
 		<put-attribute name="navi" value="/WEB-INF/views/layout/navi.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
 	</definition>

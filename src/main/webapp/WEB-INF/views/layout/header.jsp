@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <h1><a href="/shop/" style="text-decoration:none; color:#575757;">HeaderSection</a></h1>
+  <h1><a href="/shop/" style="text-decoration:none; color:#575757;"><i class="fa-solid fa-drumstick-bite"></i><i class="fa-solid fa-carrot"></i><i class="fa-solid fa-bottle-water"></i></a></h1>
   <p>Hello World</p>
 </body>
 </html>

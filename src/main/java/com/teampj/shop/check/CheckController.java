@@ -46,7 +46,7 @@ public class CheckController {
 		ListService ser = sqlSession.getMapper(ListService.class);
 		
 		int bcode = Integer.parseInt(request.getParameter("bcode"));
-		ArrayList<ListDTO> list = ser.usercheck("user003", bcode);
+		ArrayList<ListDTO> list = ser.usercheck("user001", bcode);
 		mav.addObject("list", list);
 		
 		if(bcode==1) {
@@ -55,6 +55,23 @@ public class CheckController {
 			mav.setViewName("userlike");
 		}
 
+		return mav;
+	}
+	
+	// 유저 장바구니 삭제
+	@RequestMapping(value = "/checkdel", method = RequestMethod.POST)	// 세션작업 필요
+	public ModelAndView checkdel(Model model, HttpServletRequest request) {
+		// 세션에서 아이디 가져오는걸로 수정하기
+		CheckService ser = sqlSession.getMapper(CheckService.class);
+		
+		String [] check = request.getParameterValues("check[]");
+		
+		for(int i=0; i<=(check.length-1); i++)
+		{
+			ser.checkdel(check[i], "user001");
+		}
+		
+		mav.setViewName("usermain");
 		return mav;
 	}
 
