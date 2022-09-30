@@ -7,70 +7,52 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
-  <script src="https://kit.fontawesome.com/77ad8525ff.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
-* {
-    box-sizing: border-box;
+<style type="text/css">
+a {
+  color: inherit;
+  text-decoration: none;
 }
-body {
-  margin: 0;
+html, body{
+  width: 100vw;
+  height: 100vh;
 }
-/* Style the header */
-.header {
-    background-color: #f1f1f1;
-    padding: 20px;
-    text-align: center;
+.container{
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows:200px 100px 500px auto 200px;
+  grid-template-areas:
+                      "header header header"
+                      "topnav topnav topnav"
+                      "imgmain imgmain imgmain"
+                      "lside main rside"
+                      "footer footer footer";
 }
-/* Style the top navigation bar */
-.topnav {
-    overflow: hidden;
-    background-color: #333;
+.header{
+  grid-area: header;
 }
-/* Style the topnav links */
-.topnav a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+.topnav{
+  grid-area: topnav;
 }
-/* Change color on hover */
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
+.lside{
+  grid-area: lside;
 }
-/* Create three unequal columns that floats next to each other */
-.column {
-    float: left;
-    padding: 10px;
+.imgmain{
+  grid-area: imgmain;
 }
-/* Left and right column */
-.column.side {
-    width: 25%;
+.main{
+  grid-area: main;
 }
-/* Middle column */
-.column.middle {
-    width: 50%;
+.rside{
+  grid-area: rside;
 }
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-    .column.side, .column.middle {
-        width: 100%;
-    }
-}
-/* Style the footer */
-.footer {
-    background-color: #f1f1f1;
-    padding: 10px;
-    text-align: center;
+.footer {  
+  grid-area: footer;
+  background: #ccc;
 }
 </style>
 <meta charset="UTF-8">

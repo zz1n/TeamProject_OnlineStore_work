@@ -16,13 +16,14 @@
 			<th>글번호</th>
 			<th>작성날짜</th>
 			<th>글제목</th>
+			<th>상세내용</th>
 		</tr>
 		<c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
 			<tr>
 				<td>${list[i].bnum }</td>
 				<td>${list[i].bdate }</td>
-				<td><a href="shop/user/usertosellerout?bnum=${list[i].bnum }">${list[i].bname }</a></td>	<!-- 문의글 상세로 이어지는 링크 걸어야 -->
-
+				<td>${list[i].bname }</td>	<!-- 문의글 상세로 이어지는 링크 걸어야 -->
+				<td><a href="shop/user/usertosellerout?bnum=${list[i].bnum }">작성한 문의 보러 가기</a></td>
 			</tr>
 		</c:forEach>
 	</table>

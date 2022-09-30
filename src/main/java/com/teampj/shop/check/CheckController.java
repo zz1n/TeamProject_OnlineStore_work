@@ -58,13 +58,13 @@ public class CheckController {
 		return mav;
 	}
 	
-	// 유저 장바구니 삭제
+	// 유저 장바구니/좋아요 삭제
 	@RequestMapping(value = "/checkdel", method = RequestMethod.POST)	// 세션작업 필요
 	public ModelAndView checkdel(Model model, HttpServletRequest request) {
 		// 세션에서 아이디 가져오는걸로 수정하기
 		CheckService ser = sqlSession.getMapper(CheckService.class);
 		
-		String [] check = request.getParameterValues("check[]");
+		String [] check = request.getParameterValues("chk");
 		
 		for(int i=0; i<=(check.length-1); i++)
 		{

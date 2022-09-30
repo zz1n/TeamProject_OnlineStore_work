@@ -12,10 +12,9 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="home">HOME</a>
+      <a class="navbar-brand" href="home">홈</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="home">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">list <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/shop/list/main">main</a></li>

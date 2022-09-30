@@ -239,6 +239,23 @@ public class UserController {
 
 		return mav;
 	}
+	
+	// �궡媛� �벖 臾몄쓽 �궡�슜
+	@RequestMapping(value = "/usertositeout", method = RequestMethod.GET) // �꽭�뀡�옉�뾽 �븘�슂
+	public ModelAndView usertositeout(Model model, HttpServletRequest request) {
+		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
+		BoardService ser = sqlSession.getMapper(BoardService.class);
+			
+		int bnum = Integer.parseInt(request.getParameter("bnum"));
+		System.out.println("臾몄쓽 �궡�슜 �씫�쑝�윭 �솕�뒗�뜲, "+bnum);
+			
+		ArrayList<BoardDTO> list = ser.usertosellerout(bnum);
+
+		mav.addObject("list", list);
+		mav.setViewName("usertositeout");
+
+		return mav;
+	}
 
 	// �궡媛� �벖 臾몄쓽 �궘�젣
 	@RequestMapping(value = "/usertosellerdel", method = RequestMethod.GET) // �꽭�뀡�옉�뾽 �븘�슂
