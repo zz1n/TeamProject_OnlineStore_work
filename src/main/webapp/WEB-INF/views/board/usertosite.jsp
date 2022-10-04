@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3 style="text-align: center;">사이트 문의</h3>
-	<form action="shop/board/usertositesave" method="post">
+	<form action="usertositesave" method="post">
 		<table style="width: 500px">
 			<tr>
 				<td>제목</td>

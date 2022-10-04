@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<a href="shop/order/main">오더메인</a>
 </body>
 </html>

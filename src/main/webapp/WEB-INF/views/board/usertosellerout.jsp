@@ -26,7 +26,7 @@
 				<td>${list[i].bcont }</td>
 			</tr>
 			<tr>
-				<td><a href="shop/user/usertosellerdel?bnum=${list[i].bnum }" onclick="javascript:alert('정말 삭제하시겠습니까?');">삭제</a></td>
+				<td><a href="usertosellerdel?bnum=${list[i].bnum }" onclick="javascript:alert('정말 삭제하시겠습니까?');">삭제</a></td>
 			</tr>
 		</c:forEach>
 		</table>

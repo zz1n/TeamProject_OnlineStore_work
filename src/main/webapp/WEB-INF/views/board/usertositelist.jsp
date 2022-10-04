@@ -23,7 +23,7 @@
 				<td>${list[i].bnum }</td>
 				<td>${list[i].bdate }</td>
 				<td>${list[i].bname }</td>	<!-- 문의글 상세로 이어지는 링크 걸어야 -->
-				<td><a href="shop/user/usertosellerout?bnum=${list[i].bnum }">작성한 문의 보러 가기</a></td>
+				<td><a href="usertositeout?bnum=${list[i].bnum }">작성한 문의 보러 가기</a></td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -7,7 +7,7 @@
 <title>업체 문의</title>
 </head>
 <body>
-	<form action="shop/user/usertosellersave" method="post">
+	<form action="usertosellersave" method="post">
 		<table style="width: 500px">
 			<tr>
 				<td>${dto.pthumbnail }</td>

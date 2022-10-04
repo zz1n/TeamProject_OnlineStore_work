@@ -21,9 +21,5 @@
 	</resultMap>
 <!-- scode insert 할 때, 칼럼값을 'S'||LPAD(SEQ_sellerDB.NEXTVAL,5,0) -->
 
-<select id="idCheck" parameterType="String" resultType="int">
-   select count(sellerid) from sellerdb where sellerid =#{sellerid}
-</select>
-
 
 </mapper>
