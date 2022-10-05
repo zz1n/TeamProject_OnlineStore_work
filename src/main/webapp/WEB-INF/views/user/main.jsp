@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-서버 : <%=application.getServerInfo() %> 
-서블릿 : <%= application.getMajorVersion() %>.<%= application.getMinorVersion() %>
-JSP : <%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %> 
+서버 : <%=application.getServerInfo() %> <br>
+서블릿 : <%= application.getMajorVersion() %>.<%= application.getMinorVersion() %> <br>
+JSP : <%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %> <br>
+<hr>
 </body>
 </html>

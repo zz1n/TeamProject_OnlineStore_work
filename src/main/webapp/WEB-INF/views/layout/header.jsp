@@ -73,7 +73,7 @@ margin: 0 auto;
     <div id="container">
       <div class="container-left clearfix">
         <div class="logo">
-         <a href="main"><h1>랭킹닭컴</h1></a>
+         <a href="home"><h1>랭킹닭컴</h1></a>
         </div>
           <div class="login">
             <a href="#">로그인</a>&nbsp;|

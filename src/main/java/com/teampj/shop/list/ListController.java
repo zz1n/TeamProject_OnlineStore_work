@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping(value="/list/**")
@@ -28,6 +29,12 @@ public class ListController {
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView home(Model model) {
 		mav.setViewName("listmain");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public ModelAndView maidn(Model model) {
+		mav.setView(new RedirectView("/shop"));	//다른 컨트롤러로 viewname
 		return mav;
 	}
 

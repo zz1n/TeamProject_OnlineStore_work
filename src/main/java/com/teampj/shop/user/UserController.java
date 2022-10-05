@@ -1,9 +1,5 @@
 package com.teampj.shop.user;
 
-import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,13 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.teampj.shop.board.BoardDTO;
-import com.teampj.shop.board.BoardService;
-import com.teampj.shop.list.ListDTO;
-import com.teampj.shop.list.ListService;
-import com.teampj.shop.order.OrderDTO;
-import com.teampj.shop.order.OrderService;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping(value = "/user/**")
@@ -42,6 +32,11 @@ public class UserController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public ModelAndView maidn(Model model) {
+		mav.setView(new RedirectView("/shop"));	//다른 컨트롤러로 viewname
+		return mav;
+	}
 	
 
 	

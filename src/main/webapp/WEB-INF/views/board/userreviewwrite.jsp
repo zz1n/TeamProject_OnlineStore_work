@@ -7,7 +7,7 @@
 <title>리뷰 작성</title>
 </head>
 <body>
-	<form action="shop/user/userreviewsave" method="post">
+	<form action="userreviewsave" method="post">
 		<table style="width: 500px">
 			<tr>
 				<td>제목</td>

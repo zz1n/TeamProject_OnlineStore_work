@@ -15,9 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import com.teampj.shop.TotalDTO;
 
 @Controller
-@RequestMapping(value = "/order/**")
+@RequestMapping(value = "/order/*")
 public class OrderController {
 
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
@@ -32,6 +35,12 @@ public class OrderController {
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView home(Model model) {
 		mav.setViewName("ordermain");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public ModelAndView maidn(Model model) {
+		mav.setView(new RedirectView("/shop"));	//다른 컨트롤러로 viewname
 		return mav;
 	}
 
@@ -54,9 +63,9 @@ public class OrderController {
 		OrderService ser = sqlSession.getMapper(OrderService.class);
 
 		String ocode = request.getParameter("ocode");
-		ArrayList<OrderDTO> list = ser.orderdetail("user001", ocode);
+		TotalDTO tto = ser.orderdetail("user001", ocode);
 
-		mav.addObject("list", list);
+		mav.addObject("tto", tto);
 		mav.setViewName("userorderdetail");
 		return mav;
 	}
