@@ -10,4 +10,6 @@ public interface OrderService {
 
 	TotalDTO orderdetail(String string, String ocode);
 
+	void ordercancel(String ocode, String string);
+
 }

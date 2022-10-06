@@ -33,7 +33,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView maidn(Model model) {
+	public ModelAndView home(Model model) {
 		mav.setView(new RedirectView("/shop"));	//다른 컨트롤러로 viewname
 		return mav;
 	}

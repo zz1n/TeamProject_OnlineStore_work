@@ -29,13 +29,13 @@ public class SellerController {
 	JSONObject jo;
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public ModelAndView home(Model model) {
+	public ModelAndView main(Model model) {
 		mav.setViewName("sellermain");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView maidn(Model model) {
+	public ModelAndView home(Model model) {
 		mav.setView(new RedirectView("/shop"));	//다른 컨트롤러로 viewname
 		return mav;
 	}

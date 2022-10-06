@@ -33,14 +33,14 @@ public class OrderController {
 	JSONObject jo;
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public ModelAndView home(Model model) {
+	public ModelAndView main(Model model) {
 		mav.setViewName("ordermain");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView maidn(Model model) {
-		mav.setView(new RedirectView("/shop"));	//다른 컨트롤러로 viewname
+	public ModelAndView home(Model model) {
+		mav.setView(new RedirectView("/shop")); // 다른 컨트롤러로 viewname
 		return mav;
 	}
 
@@ -67,6 +67,25 @@ public class OrderController {
 
 		mav.addObject("tto", tto);
 		mav.setViewName("userorderdetail");
+		return mav;
+	}
+
+	// 배송정보 수정
+	@RequestMapping(value = "/#", method = RequestMethod.GET)
+	public ModelAndView orderaddressupdate(Model model) {
+		mav.setView(new RedirectView("/shop")); // 다른 컨트롤러로 viewname
+		return mav;
+	}
+
+	// 취소신청
+	@RequestMapping(value = "/ordercancel", method = RequestMethod.GET)
+	public ModelAndView userordercancel(HttpServletRequest request, Model model) {
+		OrderService ser = sqlSession.getMapper(OrderService.class);
+		
+		String ocode = request.getParameter("ocode");
+		ser.ordercancel(ocode, "user001");
+		
+		mav.setViewName("userorderlist");
 		return mav;
 	}
 

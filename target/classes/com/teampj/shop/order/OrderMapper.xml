@@ -12,12 +12,15 @@
 		<result property="pcode" column="pcode"/>
 		<result property="ocount" column="ocount"/>
 		<result property="oaddress" column="oaddress"/>
+		<result property="ozipcode" column="ozipcode"/>
 		<result property="omemo" column="omemo"/>
 		<result property="omethod" column="omethod"/>
 		<result property="odate" column="odate"/>
 		<result property="ostate" column="ostate"/>
 		<result property="oshipcode" column="oshipcode"/>
 		<result property="oshipstate" column="oshipstate"/>
+		<result property="ocharge" column="ocharge"/>
+		<result property="oshipcomp" column="oshipcomp"/>
 	</resultMap>
 	
 	<resultMap type="com.teampj.shop.list.ListDTO" id="lto">
@@ -44,5 +47,9 @@ select p.pthumbnail as oaddress, o.ocode, p.pname as omemo, o.ocount, o.ocharge
 select p.pthumbnail, o.ocode, o.scode, o.pcode, p.pname, o.ocount, o.ocharge, o.ostate, o.oshipstate, o.oshipcode, o.ozipcode, o.oaddress, o.omemo, o.odate
 	from orderdb o left outer join listdb p on (o.pcode = p.pcode) where ocode = #{param2} and ucode = (select ucode from userdb where userid = #{param1})
 </select>
+
+<update id="ordercancel">
+update orderdb set ostate = 3 where ocode = #{param1} and ucode = (select ucode from userdb where userid = #{param2})
+</update>
 
 </mapper>
