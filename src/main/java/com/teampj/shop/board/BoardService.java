@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public interface BoardService {
 
+	//효진
 	BoardDTO usereareview(String string, int bnum);
 	
 	int userreviewsave(String ocode, String bname, String bcont);
@@ -23,4 +24,17 @@ public interface BoardService {
 	ArrayList<BoardDTO> usertosellerout(int bnum);
 
 	int usertositesave(String string, String bname, String bcont);
+	
+	//창용
+	ArrayList<BoardDTO> review(String pcode);
+
+	ArrayList<BoardDTO> inquiry(String pcode);
+	
+	ArrayList<BoardDTO> selectnotice(PageDTO pto); //�럹�씠吏� 泥섎━ 寃뚯떆湲� 議고쉶
+	
+	int cntnotice();
+	
+	//민섭
+	
+	public void preply(String bname, String bcont);
 }

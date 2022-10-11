@@ -18,6 +18,7 @@
 		<result property="repindent" column="repindent"/>
 	</resultMap>
 
+	<!-- 효진 -->
 <select id="usereareview" resultMap="dto">
 select b.bnum, l.pname as pcode, b.bdate, b.bname, b.bcont from boarddb b left outer join listdb l on (b.pcode = l.pcode) where b.bnum = #{param2} and b.bcode = (select ucode from userdb where userid = #{param1})
 </select>
@@ -57,5 +58,34 @@ select b.bnum, b.bname, b.bcont, p.pname as pcode, b.bdate from boarddb b, listd
 <insert id="usertositesave">
 insert into boarddb values (SEQ_boardDB.NEXTVAL, (select ucode from userdb where userid = #{param1}), #{param2}, #{param3}, '-', sysdate, 3, SEQ_boardDB.CURRVAL, 0, 0)
 </insert>
+
+<!-- 창용 -->
+<select id="review" resultMap="dto">
+    select *
+    from boarddb
+    where pcode = #{param1} and btype = '2'
+  </select>
+  
+  <select id="inquiry" resultMap="dto">
+    select *
+    from boarddb
+    where pcode = #{param1} and btype = '1'
+  </select>
+  
+  <select id="cntnotice" resultType="int">
+    select count(*)
+    from boarddb
+  </select>
+  
+  <select id="selectnotice" resultMap="dto">
+    select *
+    from (select rownum rm, A.* from(select * from boarddb order by reproot desc, repstep asc)A)
+    where rm between #{start} and #{end}
+  </select> 
+  
+<!-- 민섭 -->
+<insert id="preply">
+insert into boarddb(bnum,bname,bcont) values('b'||LPAD(SEQ_boardDB.NEXTVAL,5,0),#{param1},#{param2}) 
+</insert> 
 
 </mapper>

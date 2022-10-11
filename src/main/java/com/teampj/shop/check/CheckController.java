@@ -41,7 +41,7 @@ public class CheckController {
 	}
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView home(Model model) {
+	public ModelAndView mainhome(Model model) {
 		mav.setView(new RedirectView("/shop"));	//다른 컨트롤러로 viewname
 		return mav;
 	}
