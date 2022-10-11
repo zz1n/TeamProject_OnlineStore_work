@@ -61,5 +61,5 @@ public class TotalDTO {
 		this.uto = uto;
 	}
 	
-
+	
 }

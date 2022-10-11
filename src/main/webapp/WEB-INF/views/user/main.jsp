@@ -1,15 +1,165 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="EUC-KR">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+   window.onload = function() {
+      today = new Date();
+      console.log("today.toISOString() >>>" + today.toISOString());
+      today = today.toISOString().slice(0, 10);
+      console.log("today >>>> " + today);
+      bir = document.getElementById("todayin");
+      bir.value = today;
+   }
+</script>
+<!-- ¾ÆÀÌµð Áßº¹Ã¼Å© -->
+<script type="text/javascript">
+   $('idCheck').click(function() {
+      var userid={"userid":userid=$('#userid').val()};
+      var data=JSON.stringify(userid);
+      var $.ajax({
+         url :"idCheck",
+         method:"POST",
+         data:{data:data},
+         dataType: "json"
+      });
+      request.done(function (data) {
+         console.log(data.result)
+         if(data.result=="Y"){
+         $('#idCheck').attr('idCheck','Y');
+         alert('»ç¿ë °¡´ÉÇÑ ¾ÆÀÌµðÀÔ´Ï´Ù.');
+         } else{
+            $('#idCheck').attr('idCheck','N');
+            alert('»ç¿ëÇÒ ¼ö ¾ø´Â ¾ÆÀÌµðÀÔ´Ï´Ù.');
+         }
+         
+      });
+      request.fail(function (jqXHR, mtextStatus) {
+         alert("request failed:"+textStatus);
+      });
+   });
+</script>
+<!-- À¯È¿¼º°Ë»ç -->
+<script type="text/javascript">
+   $('loginn').click(function {
+      var f = document.form;
+
+      //¾ÆÀÌµð À¯È¿¼º
+      var vid = /^[A-Za-z0-9]{4,12}$/;
+      var cid = f.sellerid.value;
+      if (cid == "") {
+         alert("¾ÆÀÌµð´Â °ø¹éÀÏ ¼ö ¾ø½À´Ï´Ù.");
+         f.userid.select();
+         return false;
+      }
+      if (!vid.test(cid)) {
+         alert("¾ÆÀÌµð´Â ¿µ¹®ÀÚ¿Í ¼ýÀÚÆ÷ÇÔ 4~12ÀÚ¸®·Î ÀÔ·ÂÇØ¾ßÇÕ´Ï´Ù.");
+         f.userid.select();
+         return false;
+      }
+
+      //ÆÐ½º¿öµå À¯È¿¼º
+      var vpw = /^[A-Za-z0-9]{6,12}$/;
+      var cpw = f.userpw.value;
+      if (cpw == "") {
+         alert("ºñ¹Ð¹øÈ£´Â °ø¹éÀÏ ¼ö ¾ø½À´Ï´Ù.");
+         f.userpw.select();
+         return false;
+      }
+      if (!vpw.test(cpw)) {
+         alert("ºñ¹Ð¹øÈ£´Â ¿µ¹®ÀÚ¿Í ¼ýÀÚ 6~12ÀÚ¸®·Î ÀÔ·ÂÇØ¾ßÇÕ´Ï´Ù.");
+         f.userpw.select();
+         return false;
+      }
+
+      //ºñ¹Ð¹øÈ£È®ÀÎ
+      var p1 = f.userpw.value;
+      var p2 = f.userpw2.value;
+      if (p1 != p2) {
+         alert("ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ ÇÏÁö ¾Ê½À´Ï´Ù");
+         return false;
+      }
+      //ÀüÈ­¹øÈ£ À¯È¿¼º
+      var vmobile = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;
+      var umobile = f.umobile.value;
+      if (!vmobile.test(cmobile)) {
+         alert("ÀüÈ­¹øÈ£ ÀÔ·Â Çü½ÄÀ» ¸ÂÃçÁÖ¼¼¿ä.");
+         f.umobile.select();
+         return false;
+      }
+      
+      //ÀÌ¸ÞÀÏ À¯È¿¼º
+      $("#email3").change(function(){
+            $("#email2").val( $("#email3").val() );
+        });
+      }
+   
+      $('form').submit(function() {
+         var uemail1 = $('loginn[name=uemail1]').val();
+         var uemail2 = $('loginn[name=uemail2]').val();
+         var uemail = uemail1 + '@' + uemail2;
+         $('loginn[name=uemail]').val(uemail);
+         return false;
+      });
+   });
+   f.submit();
+</script>
+<title>È¸¿ø°¡ÀÔ</title>
 </head>
 <body>
-ì„œë²„ :Â <%=application.getServerInfo() %> <br>
-ì„œë¸”ë¦¿ : <%= application.getMajorVersion() %>.<%= application.getMinorVersion() %> <br>
-JSP :Â <%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %> <br>
-<hr>
+	<form name="form" action="loginn" method="post">
+		<table border="1" align="center">
+			<tr>
+				<td>¾ÆÀÌµð</td>
+				<td><input type="text" name="userid" id="userid">
+					<button type="button" id="idCheck" value="N" onclick="idCheck();">Áßº¹Ã¼Å©</button>
+				</td>
+			</tr>
+			<tr>
+				<td>ÆÐ½º¿öµå</td>
+				<td><input type="password" name="userpw" id="userpw"></td>
+			</tr>
+			<tr>
+				<td>ÆÐ½º¿öµå È®ÀÎ</td>
+				<td><input type="password" name="userpw" id="userpw"></td>
+			</tr>
+			<tr>
+				<td>´Ð³×ÀÓ</td>
+				<td><input type="text" name="uname" id="uname"></td>
+			</tr>
+			<tr>
+				<td>ÀÌ¸ÞÀÏ</td>
+				<td><input type="text" name="umail" id="umail">@ <input
+					type="text" name="umail" id="umail"> <select name="umail"
+					id="uamil" title="ÀÌ¸ÞÀÏ ÁÖ¼Ò ¼±ÅÃ" onchange="selectEmail(this)">
+						<option value="1">Á÷Á¢ÀÔ·Â</option>
+						<option value="naver.com">naver.com</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="hanmail.net">hanmail.net</option>
+						<option value="nate.com">nate.com</option>
+				</select> <input type="hidden" name="uemail"></td>
+			</tr>
+			<tr>
+				<td>¿¬¶ôÃ³</td>
+				<td><input type="text" name="umobile"
+					placeholder="ex) 010-1234-5678"></td>
+			</tr>
+			<tr>
+				<td>ÁÖ¼Ò</td>
+				<td><input type="text" name="uaddress1" placeholder="¾Ë¾Æ¼­½á¶ó"></td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center">
+				<input type="button" value="È¸¿ø°¡ÀÔ" id="loginn"> &emsp; &emsp;
+				<input type="reset" value="°¡ÀÔÃë¼Ò">
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

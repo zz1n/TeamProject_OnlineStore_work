@@ -1,5 +1,7 @@
 package com.teampj.shop.user;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -28,6 +30,14 @@ public class UserController {
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView main(Model model) {
+		mav.setViewName("usermain");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/loginn", method = RequestMethod.GET)
+	public ModelAndView loginn(HttpServletRequest req, Model model) {
+		
+		System.out.println(req.getParameter("userid"));
 		mav.setViewName("usermain");
 		return mav;
 	}

@@ -20,9 +20,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.teampj.shop.list.ListDTO;
 import com.teampj.shop.list.ListService;
 
-
 @Controller
-@RequestMapping(value="/check/**")
+@RequestMapping(value = "/check/**")
 public class CheckController {
 
 	private static final Logger logger = LoggerFactory.getLogger(CheckController.class);
@@ -39,45 +38,51 @@ public class CheckController {
 		mav.setViewName("checkmain");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView mainhome(Model model) {
-		mav.setView(new RedirectView("/shop"));	//다른 컨트롤러로 viewname
+		mav.setView(new RedirectView("/shop")); // 다른 컨트롤러로 viewname
 		return mav;
 	}
-	
+
 	// 유저 장바구니/좋아요
-	@RequestMapping(value = "/usercheck", method = RequestMethod.GET)	// 세션작업 필요
-	public ModelAndView usercheck(Model model, HttpServletRequest request) {
+	@RequestMapping(value = "/usercart", method = RequestMethod.GET) // 세션작업 필요
+	public ModelAndView usercart(Model model, HttpServletRequest request) {
 		// 세션에서 아이디 가져오는걸로 수정하기
 		ListService ser = sqlSession.getMapper(ListService.class);
-		
-		int bcode = Integer.parseInt(request.getParameter("bcode"));
-		ArrayList<ListDTO> list = ser.usercheck("user001", bcode);
+
+		ArrayList<ListDTO> list = ser.usercheck("user001", 1);
 		mav.addObject("list", list);
-		
-		if(bcode==1) {
-			mav.setViewName("usercart");
-		} else if ( bcode==2 ) {
-			mav.setViewName("userlike");
-		}
+		mav.setViewName("usercart");
 
 		return mav;
 	}
-	
+
+	// 유저 장바구니/좋아요
+	@RequestMapping(value = "/userlike", method = RequestMethod.GET) // 세션작업 필요
+	public ModelAndView userlike(Model model, HttpServletRequest request) {
+		// 세션에서 아이디 가져오는걸로 수정하기
+		ListService ser = sqlSession.getMapper(ListService.class);
+
+		ArrayList<ListDTO> list = ser.usercheck("user001", 2);
+		mav.addObject("list", list);
+		mav.setViewName("userlike");
+
+		return mav;
+	}
+
 	// 유저 장바구니/좋아요 삭제
-	@RequestMapping(value = "/checkdel", method = RequestMethod.POST)	// 세션작업 필요
+	@RequestMapping(value = "/checkdel", method = RequestMethod.POST) // 세션작업 필요
 	public ModelAndView checkdel(Model model, HttpServletRequest request) {
 		// 세션에서 아이디 가져오는걸로 수정하기
 		CheckService ser = sqlSession.getMapper(CheckService.class);
-		
-		String [] check = request.getParameterValues("chk");
-		
-		for(int i=0; i<=(check.length-1); i++)
-		{
+
+		String[] check = request.getParameterValues("chk");
+
+		for (int i = 0; i <= (check.length - 1); i++) {
 			ser.checkdel(check[i], "user001");
 		}
-		
+
 		mav.setViewName("usermain");
 		return mav;
 	}

@@ -50,7 +50,8 @@ public class OrderController {
 		OrderService ser = sqlSession.getMapper(OrderService.class);
 
 		int stnrd = Integer.parseInt(request.getParameter("stnrd"));
-		ArrayList<OrderDTO> list = ser.orderlist("user001", stnrd);
+		System.out.println(stnrd);
+		ArrayList<TotalDTO> list = ser.orderlist("user001", stnrd);
 
 		mav.addObject("list", list);
 		mav.setViewName("userorderlist");

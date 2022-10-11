@@ -14,18 +14,18 @@
 		<table style="width: 500px">
 		<c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
 			<tr>
-				<td>글번호</td>	<td>${list[i].bnum }</td>
+				<td>글번호</td>	<td>${list[i].bto.bnum }</td>
 			</tr>
 			<tr>
-				<td>글제목</td>	<td>${list[i].bname }</td>
-				<td>작성날짜</td>	<td>${list[i].bdate }</td>
+				<td>글제목</td>	<td>${list[i].bto.bname }</td>
+				<td>작성날짜</td>	<td>${list[i].bto.bdate }</td>
 			</tr>
 			<tr>
 				<td>글내용</td>
-				<td>${list[i].bcont }</td>
+				<td>${list[i].bto.bcont }</td>
 			</tr>
 			<tr>
-				<td><a href="usertosellerdel?bnum=${list[i].bnum }" onclick="javascript:alert('정말 삭제하시겠습니까?');">삭제</a></td>
+				<td><a href="usertosellerdel?bnum=${list[i].bto.bnum }" onclick="javascript:alert('정말 삭제하시겠습니까?');">삭제</a></td>
 			</tr>
 		</c:forEach>
 		</table>

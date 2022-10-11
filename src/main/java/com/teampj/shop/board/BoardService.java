@@ -2,10 +2,12 @@ package com.teampj.shop.board;
 
 import java.util.ArrayList;
 
+import com.teampj.shop.TotalDTO;
+
 public interface BoardService {
 
 	//효진
-	BoardDTO usereareview(String string, int bnum);
+	TotalDTO usereareview(String string, int bnum);
 	
 	int userreviewsave(String ocode, String bname, String bcont);
 
@@ -19,9 +21,9 @@ public interface BoardService {
 
 	int usertosellersave(String string, String bname, String bcont, String pcode);
 
-	ArrayList<BoardDTO> usertolist(String string, int btype);
+	ArrayList<TotalDTO> usertolist(String string, int btype);
 
-	ArrayList<BoardDTO> usertosellerout(int bnum);
+	ArrayList<TotalDTO> usertosellerout(int bnum);
 
 	int usertositesave(String string, String bname, String bcont);
 	

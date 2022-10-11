@@ -20,10 +20,10 @@
 		</tr>
 		<c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
 			<tr>
-				<td>${list[i].bnum }</td>
-				<td>${list[i].bdate }</td>
-				<td>${list[i].bname }</td>	<!-- 문의글 상세로 이어지는 링크 걸어야 -->
-				<td><a href="usertositeout?bnum=${list[i].bnum }">작성한 문의 보러 가기</a></td>
+				<td>${list[i].bto.bnum }</td>
+				<td>${list[i].bto.bdate }</td>
+				<td>${list[i].bto.bname }</td>	<!-- 문의글 상세로 이어지는 링크 걸어야 -->
+				<td><a href="usertositeout?bnum=${list[i].bto.bnum }">작성한 문의 보러 가기</a></td>
 			</tr>
 		</c:forEach>
 	</table>
