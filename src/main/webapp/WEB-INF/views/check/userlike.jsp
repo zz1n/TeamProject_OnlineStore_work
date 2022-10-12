@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,11 +35,11 @@
 				<th>제품사진</th> <th>제품이름</th> <th>가격</th>
 				
 			</tr>
-		<c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
+		<c:forEach var="li" items="${list }" varStatus="status">
 			<tr>
-				<td><input type="checkbox" name="chk" value="${list[i].pcode }" ></td>
-				<td>${list[i].pthumbnail }</td> <td>${list[i].pname }</td> <td>${list[i].price }</td>
-				
+				<td><input type="checkbox" name="chk" value="${list2[status.index].ccode }" ></td>
+				<td>${li.pthumbnail }</td> <td><a href="detail?pcode=${li.pcode }">${li.pname }</a></td>
+				<td><fmt:formatNumber value="${li.price }" pattern="#,###,#00원"></fmt:formatNumber></td>
 			</tr>
 		</c:forEach>
 			<tr>

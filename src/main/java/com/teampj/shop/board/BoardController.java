@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.teampj.shop.TotalDTO;
 import com.teampj.shop.list.ListDTO;
 import com.teampj.shop.list.ListService;
 
@@ -51,12 +50,14 @@ public class BoardController {
 	public ModelAndView reviewout(Model model, HttpServletRequest request) {
 		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 		BoardService ser = sqlSession.getMapper(BoardService.class);
+		ListService ler = sqlSession.getMapper(ListService.class);
 
 		int bnum = Integer.parseInt(request.getParameter("bnum"));
-		System.out.println("紐뉖쾲由щ럭?" + bnum);
-		TotalDTO dto = ser.usereareview("user001", bnum);
+		BoardDTO dto = ser.usereareview("user001", bnum);
+		ListDTO lto = ler.usereareview("user001", bnum);
 
 		mav.addObject("dto", dto);
+		mav.addObject("lto", lto);
 		mav.setViewName("userreviewout");
 		return mav;
 	}
@@ -82,7 +83,7 @@ public class BoardController {
 		String bname = request.getParameter("bname");
 		String bcont = request.getParameter("bcont");
 
-		int k = ser.userreviewsave(ocode, bname, bcont);
+		int k = ser.userreviewsave(ocode, bname, bcont, "user001");
 		System.out.println(k + "由щ럭���옣�릱�땲?");
 
 		mav.setViewName("redirect:main");
@@ -124,11 +125,14 @@ public class BoardController {
 	public ModelAndView reviewupdateget(Model model, HttpServletRequest request) {
 		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 		BoardService ser = sqlSession.getMapper(BoardService.class);
+		ListService ler = sqlSession.getMapper(ListService.class);
 
 		int bnum = Integer.parseInt(request.getParameter("bnum"));
-		TotalDTO dto = ser.usereareview("user001", bnum);
+		BoardDTO dto = ser.usereareview("user001", bnum);
+		ListDTO lto = ler.usereareview("user001", bnum);
 
 		mav.addObject("dto", dto);
+		mav.addObject("lto", lto);
 		mav.setViewName("userreviewupdateget");
 		return mav;
 	}
@@ -157,7 +161,6 @@ public class BoardController {
 
 		ListService ser = sqlSession.getMapper(ListService.class);
 		String ocode = request.getParameter("ocode");
-		System.out.println("usertoseller ocode �옒 �룄李⑺뻽�땲? " + ocode);
 		ListDTO dto = ser.usertoseller(ocode);
 
 		mav.addObject("dto", dto);
@@ -193,9 +196,12 @@ public class BoardController {
 
 		int btype = Integer.parseInt(request.getParameter("btype"));
 		BoardService ser = sqlSession.getMapper(BoardService.class);
-		ArrayList<TotalDTO> list = ser.usertolist("user001", btype);
+		ListService ler = sqlSession.getMapper(ListService.class);
+		ArrayList<BoardDTO> list = ser.usertolist("user001", btype);
+		ArrayList<ListDTO> list2 = ler.usertolist("user001", btype);
 
 		mav.addObject("list", list);
+		mav.addObject("list2", list2);
 		mav.setViewName("usertosellerlist");
 
 		return mav;
@@ -206,13 +212,15 @@ public class BoardController {
 	public ModelAndView usertosellerout(Model model, HttpServletRequest request) {
 		// �꽭�뀡�뿉�꽌 �븘�씠�뵒 媛��졇�삤�뒗嫄몃줈 �닔�젙�븯湲�
 		BoardService ser = sqlSession.getMapper(BoardService.class);
+		ListService ler = sqlSession.getMapper(ListService.class);
 
 		int bnum = Integer.parseInt(request.getParameter("bnum"));
-		System.out.println("臾몄쓽 �궡�슜 �씫�쑝�윭 �솕�뒗�뜲, " + bnum);
 
-		ArrayList<TotalDTO> list = ser.usertosellerout(bnum);
+		ArrayList<BoardDTO> list = ser.usertosellerout(bnum);
+		ArrayList<ListDTO> list2 = ler.usertosellerout(bnum);
 
 		mav.addObject("list", list);
+		mav.addObject("list2", list2);
 		mav.setViewName("usertosellerout");
 
 		return mav;
@@ -271,7 +279,7 @@ public class BoardController {
 		BoardService ser = sqlSession.getMapper(BoardService.class);
 
 		int btype = Integer.parseInt(request.getParameter("btype"));
-		ArrayList<TotalDTO> list = ser.usertolist("user001", btype);
+		ArrayList<BoardDTO> list = ser.usertolist("user001", btype);
 
 		mav.addObject("list", list);
 		mav.setViewName("usertositelist");
@@ -288,7 +296,7 @@ public class BoardController {
 		int bnum = Integer.parseInt(request.getParameter("bnum"));
 		System.out.println("臾몄쓽 �궡�슜 �씫�쑝�윭 �솕�뒗�뜲, " + bnum);
 
-		ArrayList<TotalDTO> list = ser.usertosellerout(bnum);
+		ArrayList<BoardDTO> list = ser.usertosellerout(bnum);
 
 		mav.addObject("list", list);
 		mav.setViewName("usertositeout");

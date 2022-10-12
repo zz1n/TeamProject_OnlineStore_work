@@ -118,6 +118,9 @@
 	<definition name="userorderdetail" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/order/userorderdetail.jsp" />
 	</definition>
+	<definition name="userorderchange" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/order/userorderchange.jsp" />
+	</definition>
 	
 <!-- PROFIT -->
 	<definition name="profitmain" extends="baseLayout">

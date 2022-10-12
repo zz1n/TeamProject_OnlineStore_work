@@ -24,6 +24,28 @@
         });
     });
 </script>
+
+<script type="text/javascript">
+function vcheck(){
+	var f = document.form;
+	var cbname = f.bname.value;
+	var cbcont = f.bcont.value;
+	
+	if(cbname==""){
+		alert("제목은 공백일 수 없습니다.")
+		f.bname.select();
+		return false;
+	}
+	
+	if(cbcont==""){
+		alert("내용은 공백일 수 없습니다.")
+		f.bcont.select();
+		return false;
+	}
+	
+	f.submit();
+}
+</script>
 <meta charset="UTF-8">
 <title>사이트 문의</title>
 </head>
@@ -37,7 +59,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><div id="summernote" name="bcont"></div></td>
+				<td><textarea id="summernote" name="bcont"></textarea></td>
 			</tr>
 		</table>
 		<br>

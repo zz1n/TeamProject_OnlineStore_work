@@ -51,8 +51,7 @@
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">user <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/shop/user/main">main</a></li>
-          <li><a href="/shop/order/orderlist?stnrd=0">orderlist</a></li>
-          <li><a href="/shop/order/orderlist?stnrd=3">bfrorderlist</a></li>
+          <li><a href="/shop/order/orderlist">orderlist</a></li>
           <li><hr></li>
           <li><a href="/shop/board/reviewlist?btype=2">review</a></li>
           <li><a href="/shop/check/usercart">cart</a></li>

@@ -10,17 +10,17 @@
 </head>
 <body>
 <h3 style="text-align:center;">후기 목록</h3>
-	<form action="#" method="post">
+	<form>
 		<table style="width: 500px" align="center">
 			<tr>
 				<th>상품</th> <th>제목</th> <th>작성일자</th>
 				
 			</tr>
-		<c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
+		<c:forEach var="li" items="${list }">
 			<tr>
-				<td>${list[i].pcode } + ${list[i].bnum}</td>
-				<td><a href="reviewout?bnum=${list[i].bnum}">${list[i].bname }</a></td>
-				<td>${list[i].bdate }</td>
+				<td>${li.pcode } + ${li.bnum}</td>
+				<td><a href="reviewout?bnum=${li.bnum}">${li.bname }</a></td>
+				<td>${li.bdate }</td>
 			</tr>
 		</c:forEach>
 		</table>

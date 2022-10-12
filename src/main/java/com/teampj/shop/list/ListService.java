@@ -8,6 +8,18 @@ public interface ListService {
 	ArrayList<ListDTO> usercheck(String string, int bcode);
 
 	ListDTO usertoseller(String ocode);
+	
+	ListDTO usereareview(String string, int bnum);
+
+	ArrayList<ListDTO> usertolist(String string, int btype);
+
+	ArrayList<ListDTO> usertosellerout(int bnum);
+
+	ArrayList<ListDTO> orderlist(String string, int stnrd);
+
+	ListDTO orderdetail(String string, String ocode);
+
+	ListDTO userorderchangeget(String string, String ocode);
 
 	//창용
 	ArrayList<ListDTO> mainout();
@@ -28,6 +40,5 @@ public interface ListService {
 
 	ArrayList<ListDTO> brandcate(String brandcate);
 
-	
 
 }

@@ -17,23 +17,14 @@
 		<result property="repstep" column="repstep"/>
 		<result property="repindent" column="repindent"/>
 	</resultMap>
-	
-	<resultMap type="com.teampj.shop.list.ListDTO" id="lto">
-		<result property="pname" column="pname"/>
-	</resultMap>
-	
-	<resultMap type="com.teampj.shop.TotalDTO" id="tto">
-		<collection property="bto" resultMap="dto" />
-		<collection property="lto" resultMap="lto" />
-	</resultMap>
 
 	<!-- 효진 -->
-<select id="usereareview" resultMap="tto">
+<select id="usereareview" resultMap="dto">
 select b.bnum, l.pname, b.bdate, b.bname, b.bcont from boarddb b left outer join listdb l on (b.pcode = l.pcode) where b.bnum = #{param2} and b.bcode = (select ucode from userdb where userid = #{param1})
 </select>
 
 <insert id="userreviewsave">
-insert into boarddb select SEQ_boardDB.NEXTVAL, ucode, #{param2}, #{param3}, pcode, sysdate, 2, 2, 0, 0 from orderdb where ocode = #{param1}
+insert into boarddb values (SEQ_boardDB.NEXTVAL, (select ucode from userdb where userid = #{param4}), #{param2}, #{param3}, (select pcode from orderdb where ocode = #{param1}), sysdate, 2, SEQ_boardDB.CURRVAL, 0, 0)
 </insert>
 
 <select id="userreviewlist" resultMap="dto">
@@ -56,11 +47,11 @@ update boarddb set bname = #{param3}, bcont = #{param4} where bnum = #{param2} a
 insert into boarddb values (SEQ_boardDB.NEXTVAL, (select ucode from userdb where userid = #{param1}), #{param2}, #{param3}, #{param4}, sysdate, 1, SEQ_boardDB.CURRVAL, 0, 0)
 </insert>
 
-<select id="usertolist" resultMap="tto">
+<select id="usertolist" resultMap="dto">
 select b.bnum, b.bname, b.bdate, p.pname from boarddb b, listdb p where b.pcode = p.pcode(+) and b.btype = #{param2} and b.bcode = (select ucode from userdb where userid = #{param1})
 </select>
 
-<select id="usertosellerout" resultMap="tto">
+<select id="usertosellerout" resultMap="dto">
 select b.bnum, b.bname, b.bcont, p.pname, b.bdate from boarddb b, listdb p where b.pcode = p.pcode(+) and reproot = #{param1} order by bnum
 </select>
 

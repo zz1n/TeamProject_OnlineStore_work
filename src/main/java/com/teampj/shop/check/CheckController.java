@@ -45,34 +45,60 @@ public class CheckController {
 		return mav;
 	}
 
-	// 유저 장바구니/좋아요
+	// 유저 장바구니
 	@RequestMapping(value = "/usercart", method = RequestMethod.GET) // 세션작업 필요
 	public ModelAndView usercart(Model model, HttpServletRequest request) {
 		// 세션에서 아이디 가져오는걸로 수정하기
 		ListService ser = sqlSession.getMapper(ListService.class);
+		CheckService cer = sqlSession.getMapper(CheckService.class);
 
 		ArrayList<ListDTO> list = ser.usercheck("user001", 1);
+		ArrayList<CheckDTO> list2 = cer.usercheck("user001", 1);
+		
 		mav.addObject("list", list);
+		mav.addObject("list2", list2);
 		mav.setViewName("usercart");
 
 		return mav;
 	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public ModelAndView detail(Model model, HttpServletRequest request) {
+		String pcode = request.getParameter("pcode");
+		mav.addObject("pcode", pcode);
+		mav.setView(new RedirectView("/shop/list/detail"));
+		return mav;
+	}
+	
+	@RequestMapping(value = "/buy", method = RequestMethod.GET)
+	public ModelAndView buy(Model model, HttpServletRequest request) {
+		mav.addObject("pcode", request.getParameter("pcode"));
+		mav.addObject("bb", request.getParameter("bb"));
+		System.out.println(request.getParameter("pcode"));
+		System.out.println(request.getParameter("bb"));
+		mav.setView(new RedirectView("/shop/list/buy"));
+		return mav;
+	}
 
-	// 유저 장바구니/좋아요
+	// 유저 좋아요
 	@RequestMapping(value = "/userlike", method = RequestMethod.GET) // 세션작업 필요
 	public ModelAndView userlike(Model model, HttpServletRequest request) {
 		// 세션에서 아이디 가져오는걸로 수정하기
 		ListService ser = sqlSession.getMapper(ListService.class);
+		CheckService cer = sqlSession.getMapper(CheckService.class);
 
 		ArrayList<ListDTO> list = ser.usercheck("user001", 2);
+		ArrayList<CheckDTO> list2 = cer.usercheck("user001", 2);
+		
 		mav.addObject("list", list);
+		mav.addObject("list2", list2);
 		mav.setViewName("userlike");
 
 		return mav;
 	}
 
 	// 유저 장바구니/좋아요 삭제
-	@RequestMapping(value = "/checkdel", method = RequestMethod.POST) // 세션작업 필요
+	@RequestMapping(value = "/checkdel", method = RequestMethod.GET) // 세션작업 필요
 	public ModelAndView checkdel(Model model, HttpServletRequest request) {
 		// 세션에서 아이디 가져오는걸로 수정하기
 		CheckService ser = sqlSession.getMapper(CheckService.class);

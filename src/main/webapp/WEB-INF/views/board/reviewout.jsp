@@ -8,28 +8,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3 style="text-align: center;">${dto.lto.pname }에 작성한 후기</h3>
-	<form action="#" method="post">
+<h3 style="text-align: center;">${lto.pname }에 작성한 후기</h3>
+	<form>
 		<table style="width: 500px">
 			<tr>
 				<td>상품</td>
-				<td>${dto.lto.pname }</td>
+				<td>${lto.pname }</td>
 			</tr>
 			<tr>
 				<td>작성일자</td>
-				<td>${dto.bto.bdate }</td>
+				<td>${dto.bdate }</td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td>${dto.bto.bname }</td>
+				<td>${dto.bname }</td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td>${dto.bto.bcont }</td>
+				<td>${dto.bcont }</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><a href="reviewupdateget?bnum=${dto.bto.bnum}">수정</a> &emsp;
-				<a href="userreviewdel?bnum=${dto.bto.bnum}" onclick="javascript:alert('정말 삭제하시겠습니까?');">삭제</a></td>
+				<td colspan="2" align="center"><a href="reviewupdateget?bnum=${dto.bnum}">수정</a> &emsp;
+				<a href="userreviewdel?bnum=${dto.bnum}" onclick="javascript:alert('정말 삭제하시겠습니까?');">삭제</a></td>
 			</tr>
 		</table>
 	</form>
